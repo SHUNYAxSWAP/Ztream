@@ -1,19 +1,21 @@
-import {createBrowserRouter,RouterProvider} from "react-router"
-import Login from "./Signup"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Login from "./Login"
 import Header from "./Header"
+import { useState } from "react"
 
 const Body = () => {
+  const [loggedIn, setLoggedIn] = useState(false)
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Login/> 
+      element: <Login loggedIn={loggedIn}/>
     }
   ])
   return (
-<div>
-  <Header/>
-<RouterProvider router={appRouter}/>
-</div>
+    <div>
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+      <RouterProvider router={appRouter} />
+    </div>
   )
 }
 
