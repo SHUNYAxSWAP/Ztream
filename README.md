@@ -21,3 +21,4 @@
 - Configured TailwindCSS
 - Header
     - Logo
+- Form Validation
