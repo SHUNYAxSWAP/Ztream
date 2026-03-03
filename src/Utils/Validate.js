@@ -4,7 +4,6 @@ export function emailValid(email) {
     else return "That email doesn’t look right."
 }
 export function emailAndNumberValid(data) {
-    console.log("hello")
     const phoneRegex = /^\+\d{1,3}\d{9,12}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     var test =
