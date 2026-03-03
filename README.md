@@ -22,3 +22,7 @@
 - Header
     - Logo
 - Form Validation
+- FireBase
+- Deployed the App
+- Implemented Signin and SignOut
+- Created Redux Store
