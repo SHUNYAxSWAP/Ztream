@@ -3,6 +3,8 @@ import Background from './Background'
 import { useRef, useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../Utils/firebase';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../Utils/userSlice';
 
 const SignUp = () => {
     const location = useLocation();
@@ -11,16 +13,24 @@ const SignUp = () => {
     const name = useRef();
     const password = useRef();
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
-    const buttonHandler =  () => {
-        console.log(name.current.value)
+    const buttonHandler = () => {
         createUserWithEmailAndPassword(auth, email, password.current.value)
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
                 updateProfile(auth.currentUser, {
                     displayName: name.current.value
+
                 }).then(() => {
+                    const updatedUser = auth.currentUser;
+
+                    dispatch(addUser({
+                        uid: updatedUser.uid,
+                        email: updatedUser.email,
+                        displayName: updatedUser.displayName,
+                    }));
                     navigate("/signin", {
                         state: { email: email }
                     })

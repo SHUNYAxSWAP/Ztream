@@ -42,7 +42,7 @@ const Body = () => {
   ])
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      await user.reload(); // ensure fresh data
+     // ensure fresh data
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
