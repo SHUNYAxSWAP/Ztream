@@ -6,17 +6,17 @@ import { auth } from '../Utils/firebase';
 
 
 const SignIn = () => {
-  const navigate = useNavigate()
   const password = useRef(null)
   const location = useLocation();
   const email = location.state?.email;
+  const navigate = useNavigate()
   const buttonHandler = () => {
     signInWithEmailAndPassword(auth, email, password.current.value)
       .then((userCredential) => {
         // Signed in 
-        
+        navigate('/browse')
         const user = userCredential.user;
-                navigate("/browse")
+                navigate('/browse')
         // ...
       })
       .catch((error) => {

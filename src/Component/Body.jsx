@@ -1,53 +1,61 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom"
 import Home from "./Home"
 import SignUp from "./SignUp"
-import { useState, useEffect } from "react"
 import SignIn from "./SignIn"
 import Browse from "./Browse"
-import { onAuthStateChanged } from "firebase/auth";
+import AuthLayout from "./AuthLayout"
+import AppLayout from "./AppLayout"
+import { useEffect } from "react"
 import { auth } from '../Utils/firebase';
+import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../Utils/userSlice"
-import Layout from "./Layout"
+import { useDispatch } from "react-redux"
+import ProtectedRoute from "../Utils/ProtectedRoute"
 
-
-
-const Body = () => {
-  const [loggedIn, setLoggedIn] = useState(false)
-  const dispatch = useDispatch();
-  const appRouter = createBrowserRouter([
+const appRouter = createBrowserRouter([
     {
-      path: "/",
-      element: <Layout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />,
+      element: <AuthLayout />,
       children: [
         {
           path: "/",
           element: <Home />
         },
         {
-          path: "/signup",
+          path: "signup",
           element: <SignUp />
         },
         {
-          path: "/signin",
+          path: "signin",
           element: <SignIn />
-        },
+        }
+      ]
+    },
+    {
+      element: <AppLayout/>,
+      children: [
         {
-          path: "/browse",
-          element: <Browse />
+          path: "browse",
+          element: (<ProtectedRoute>
+            <Browse />
+          </ProtectedRoute>)
         }
       ]
     }
 
   ])
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-     // ensure fresh data
+
+
+const Body = () => {
+  const dispatch = useDispatch()
+      useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // ensure fresh data
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
+        console.log("User Signin")
         // ...
       } else {
         dispatch(removeUser())
@@ -55,8 +63,9 @@ const Body = () => {
         // ...
       }
     });
+    return () => unsubscribe()
   }, [])
-
+  
   return (
     <div >
       <RouterProvider router={appRouter} />
