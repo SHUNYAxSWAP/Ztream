@@ -1,16 +1,14 @@
-
-import {  useSelector } from "react-redux"
+import useApi from "../Hooks/useApi"
+import MainContainer from "./MainContainer"
+import SecondaryContainer from "./SecondaryContainer"
 
 const Browse = () => {
-  const user = useSelector((store)=> store.user.userInfo.displayName)
-  console.log("Browse page loaded")
+  useApi()
   return (
-    
-    <div className="w-screen h-screen flex justify-center items-center">
-      <button >Signout</button>
-      <h1>{user}</h1>
+    <div className="">
+      <MainContainer/>
+      <SecondaryContainer/>
     </div>
   )
 }
-
 export default Browse

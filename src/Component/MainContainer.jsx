@@ -1,0 +1,18 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import MovieTitle from './MovieTitle'
+import MovieBg from './MovieBg'
+
+const MainContainer = () => {
+    const movie = useSelector((store) => store.movie.MovieInfo)
+    if (!movie) return <h1>Loading....</h1>
+    return (
+        <div>
+            <MovieBg id={movie.results[0].id}/>
+            <MovieTitle title={movie.results[0].original_title} overview={movie.results[0].overview}/>
+            
+        </div>
+    )
+}
+
+export default MainContainer
