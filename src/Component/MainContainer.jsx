@@ -4,7 +4,7 @@ import MovieTitle from './MovieTitle'
 import MovieBg from './MovieBg'
 
 const MainContainer = () => {
-    const movie = useSelector((store) => store.movie.MovieInfo)
+    const movie = useSelector((store) => store.movie.NowPlaying)
     if (!movie) return <h1>Loading....</h1>
     return (
         <div>
