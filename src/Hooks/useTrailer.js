@@ -14,7 +14,6 @@ const useTrailer = (id) => {
         dispatch(addTrailer(trailerFilterVideo[0]))
     }
     useEffect(()=>{
-        console.log("effect called working")
         getTrailerApi()
     },[])
 }

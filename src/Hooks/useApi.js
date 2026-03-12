@@ -14,18 +14,11 @@ const useApi = () => {
         const popular = await axios.get(popularApi, options)
         const topRated = await axios.get(topRatedApi, options)
         const upcoming = await axios.get(upcomingApi, options)
-        console.log("Now Playing:", nowPlaying.data.results.slice(0, 5).map(m => m.title));
-        console.log(popular.data);
         dispatch(addNowPlaying(nowPlaying.data))
         dispatch(addPopular(popular.data))
         dispatch(addTopRated(topRated.data))
         dispatch(addUpcoming(upcoming.data))
-        console.log("Now Playing:", nowPlaying.data.results.slice(0, 5).map(m => m.title));
-        console.log("Popular:", popular.data.results.slice(0, 5).map(m => m.title));
-        console.log("Top rated:", topRated.data.results.slice(0, 5).map(m => m.title));
-        console.log("Upcoming:", upcoming.data.results.slice(0, 5).map(m => m.title));
-        console.log("Now Playing URL:", movieApi);
-        console.log("Popular URL:", popularApi);
+
     }
     useEffect(() => {
         movieApiCall()
