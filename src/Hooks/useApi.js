@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useDispatch } from "react-redux"
-import { options } from "../Utils/constant"
 import { useEffect } from "react"
 import { addNowPlaying, addPopular, addTopRated, addUpcoming } from "../Utils/movieSlice"
 import { movieApi, popularApi, topRatedApi, upcomingApi } from "../Utils/constant"
-
+import { options, searchMovie, searchMovieOption } from '../Utils/constant'
+import { addSearchMovie } from "../Utils/movieSlice"
 
 
 const useApi = () => {
@@ -24,5 +24,10 @@ const useApi = () => {
         movieApiCall()
     }
         , [])
+}
+export const searchTMDB = async (mov,dispatch) => {
+    const searchData = await axios.get(searchMovie + mov.title + searchMovieOption, options)
+    const filteredData = searchData.data.results.filter((data) => (data.title === mov.title) && (data.release_date.slice(0, 4) === mov.release_date))
+    dispatch(addSearchMovie(filteredData[0]))
 }
 export default useApi

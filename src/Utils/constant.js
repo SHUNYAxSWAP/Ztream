@@ -21,3 +21,6 @@ export const Supported_Lang = [
   {identifier : "hindi", value : 'Hindi'},
   {identifier : "spanish", value : 'Spanish'}
 ]
+
+export const searchMovie = 'https://api.themoviedb.org/3/search/movie?query='
+export const searchMovieOption = '&include_adult=true&language=en-US&page=1'
