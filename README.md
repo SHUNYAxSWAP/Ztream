@@ -1,6 +1,6 @@
 # 🎬 Ztream — AI-Powered Movie Discovery Platform
 
-Ztream is a Netflix-style movie browsing and AI-driven recommendation platform that combines Large Language Models (LLMs) with real movie data to provide intelligent movie discovery.
+Ztream is a movie browsing and AI-driven recommendation platform that combines Large Language Models (LLMs) with real movie data to provide intelligent movie discovery.
 
 The application integrates Groq LLM inference, TMDB’s movie database, Firebase authentication, and a modern React + Redux architecture to deliver dynamic movie recommendations based on natural language queries.
 
