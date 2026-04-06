@@ -49,28 +49,35 @@ const SignUp = () => {
                 // ..
             });
 
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            buttonHandler();
+        }
     }
 
 
     return (
-        <div className='w-screen h-screen flex justify-center items-center text-white'>
+        <div className='relative w-screen h-screen overflow-hidden flex justify-center items-center text-white px-4'>
             <Background />
-            <div className='flex flex-col w-[600px] justify-evenly bg-black/70 p-10 rounded-lg backdrop-blur-sm h-[500px]'>
-                <h1 className=' font-bold text-4xl leading-normal'>Set your password to unlock unlimited entertainment </h1>
-                <div className='flex flex-col gap-2 text-base text-gray-300'>
-                    <p>Just one final step.</p>
-                    <p>Then the entertainment begins.</p>
+            <div className="absolute inset-0 bg-black/40 sm:bg-black/20"></div>
+            
+            <div className='relative z-10 flex flex-col w-full max-w-[500px] gap-6 bg-black/75 px-8 sm:px-12 py-10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/5'>
+                <h1 className='font-bold text-3xl sm:text-4xl leading-tight sm:leading-normal mb-1'>Set your password to unlock unlimited entertainment</h1>
+                
+                <div className='flex flex-col text-sm sm:text-base text-gray-300'>
+                    <p>Just one final step. Then the entertainment begins.</p>
                 </div>
 
-                <form action="" method="post" className='flex flex-col gap-2' >
-                    <input type="text" name="" id="" placeholder='Name' className='border border-solid px-12 py-3 bg-[#14100f] rounded-md border-gray-500' ref={name} />
-                    <input type="email" name="" id="" placeholder='Email' className='border border-solid px-12 py-3 bg-[#14100f] rounded-md border-gray-500' value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" name="" id="" placeholder='Password' className='border border-solid px-12 py-3 bg-[#14100f] rounded-md border-gray-500' ref={password} />
-                    <button type="button" className='px-3 py-3 text-base font-bold  bg-[#ff0f1f] text-white rounded-md hover:bg-red-700' onClick={buttonHandler}>Next</button>
-
+                <form action="" method="post" className='flex flex-col gap-4 mt-2' >
+                    <input type="text" placeholder='Name' className='border border-gray-600 px-6 py-4 bg-black/50 text-white rounded-lg focus:ring-2 focus:ring-ztream outline-none transition-all placeholder-gray-400 shadow-inner' ref={name} onKeyDown={handleKeyDown} />
+                    <input type="email" placeholder='Email address' className='border border-gray-600 px-6 py-4 bg-black/50 text-white rounded-lg focus:ring-2 focus:ring-ztream outline-none transition-all placeholder-gray-400 shadow-inner' value={email || ''} onChange={(e) => setEmail(e.target.value)} onKeyDown={handleKeyDown} />
+                    <input type="password" placeholder='Password' className='border border-gray-600 px-6 py-4 bg-black/50 text-white rounded-lg focus:ring-2 focus:ring-ztream outline-none transition-all placeholder-gray-400 shadow-inner' ref={password} onKeyDown={handleKeyDown} />
+                    <button type="button" className='mt-4 px-4 py-4 text-lg font-bold bg-ztream text-white rounded-lg shadow-lg hover:bg-red-600 hover:shadow-ztream/50 hover:-translate-y-0.5 transition-all duration-300' onClick={buttonHandler}>Next &gt;</button>
                 </form>
             </div>
-
         </div>
     )
 }

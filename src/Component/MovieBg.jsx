@@ -5,9 +5,12 @@ const MovieBg = ({id}) => {
     useTrailer(id)
     const trailerVideo = useSelector((store)=> store.movie?.TrailerVideo)
     return (
-        <div className="">
-            <iframe className="w-screen aspect-video absolute top-0 -z-10 "
-            src={youtubeApi + trailerVideo?.key + youtubeOptions}title="YouTube video player"  >
+        <div className="absolute inset-0 w-full h-full">
+            <iframe className="w-full h-full pointer-events-none"
+                src={youtubeApi + trailerVideo?.key + youtubeOptions + "&playlist=" + trailerVideo?.key}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen>
             </iframe>
         </div> 
     )

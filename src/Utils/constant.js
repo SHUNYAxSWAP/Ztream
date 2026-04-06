@@ -4,9 +4,9 @@ export const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer ' + process.env.REACT_APP_API_AUTH
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWRmODFjYTVlNzRkNGRiOTExMTFjYWFjMGJlZTVlMyIsIm5iZiI6MTc3MzAyODEzMS40MjEsInN1YiI6IjY5YWU0MzIzN2JiYTFlOWFiMTc5NDY2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.E1GjuW_VNCJpZJEHkh95wYZ129DiuNEdncof2a4exEg'
   }
-}
+};
 export const movieApi = 'https://api.themoviedb.org/3/movie/now_playing'
 export const popularApi = 'https://api.themoviedb.org/3/movie/popular'
 export const topRatedApi = 'https://api.themoviedb.org/3/movie/top_rated'
